@@ -122,15 +122,13 @@ const LandingPage: React.FC = () => {
                             </motion.div>
 
                         ))}
-                        <Link
-                            to="/about"
-                            className="group inline-flex items-center mt-4 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
-                        >
-                            Learn About MBTI
-                        </Link>
+
                     </div>
+                    
                 </div>
+                
             </section>
+            
 
             {/* CTA Section */}
             <section className="py-20">
@@ -144,6 +142,7 @@ const LandingPage: React.FC = () => {
                         <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                             Ready to Unlock Your Career Potential?
                         </h2>
+                        
                         <p className="text-xl text-gray-600 mb-8">
                             Join thousands of professionals who've discovered their personality type and accelerated their career growth.
                         </p>

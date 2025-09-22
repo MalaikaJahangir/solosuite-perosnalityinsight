@@ -19,8 +19,6 @@ const ResultsPage: React.FC = () => {
             return;
         }
 
-
-
         // Simulate AI processing
         setTimeout(() => {
             const aiInsights = getMBTIInsights(mbtiType);
