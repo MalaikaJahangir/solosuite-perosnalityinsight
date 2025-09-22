@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import jsPDF from 'jspdf';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { RefreshCw, Download, ArrowRight, TrendingUp, Users, Lightbulb } from 'lucide-react';
@@ -59,6 +60,65 @@ const ResultsPage: React.FC = () => {
     }
 
     const mbtiDescription = getMBTIDescription(mbtiType);
+
+    // Handler to generate PDF
+    const handleSavePDF = () => {
+        const doc = new jsPDF();
+        let y = 10;
+        doc.setFontSize(22);
+        doc.text('Personality Test Results', 10, y);
+        y += 12;
+        doc.setFontSize(16);
+        doc.text(`Type: ${mbtiType} - ${mbtiDescription.name}`, 10, y);
+        y += 10;
+        doc.setFontSize(12);
+        doc.text('Description:', 10, y);
+        y += 8;
+        doc.text(doc.splitTextToSize(mbtiDescription.description, 180), 10, y);
+        y += 18;
+        doc.setFontSize(14);
+        doc.text('Key Traits:', 10, y);
+        y += 8;
+        doc.setFontSize(12);
+        mbtiDescription.traits.forEach((trait: string) => {
+            doc.text(`- ${trait}`, 12, y);
+            y += 7;
+        });
+        y += 5;
+        doc.setFontSize(14);
+        doc.text('Professional Impact:', 10, y);
+        y += 8;
+        doc.setFontSize(12);
+        doc.text(doc.splitTextToSize(insights.professionalImpact, 180), 10, y);
+        y += 18;
+        doc.setFontSize(14);
+        doc.text('Career Strengths:', 10, y);
+        y += 8;
+        doc.setFontSize(12);
+        insights.strengths.forEach((strength: string) => {
+            doc.text(`- ${strength}`, 12, y);
+            y += 7;
+        });
+        y += 5;
+        doc.setFontSize(14);
+        doc.text('Growth Opportunities:', 10, y);
+        y += 8;
+        doc.setFontSize(12);
+        insights.areasToImprove.forEach((area: string) => {
+            doc.text(`- ${area}`, 12, y);
+            y += 7;
+        });
+        y += 5;
+        doc.setFontSize(14);
+        doc.text('Recommended Career Paths:', 10, y);
+        y += 8;
+        doc.setFontSize(12);
+        insights.careerPaths.forEach((career: string) => {
+            doc.text(`- ${career}`, 12, y);
+            y += 7;
+        });
+        doc.save('personality_test_results.pdf');
+    };
 
     return (
         <div className="min-h-screen py-8">
@@ -214,7 +274,7 @@ const ResultsPage: React.FC = () => {
                     </Link>
 
                     <button
-                        onClick={() => window.print()}
+                        onClick={handleSavePDF}
                         className="flex items-center justify-center px-6 py-3 bg-white text-gray-700 font-semibold rounded-xl hover:bg-gray-50 border border-gray-300 transform hover:scale-105 transition-all duration-200"
                     >
                         Save Results
