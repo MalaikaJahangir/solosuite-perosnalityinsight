@@ -14,7 +14,7 @@ const Header: React.FC = () => {
               <Brain className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold gradient-text">Solosuite</h1>
+              <h1 className="text-xl font-bold gradient-text">SoloSuite</h1>
               <p className="text-xs text-gray-600">Discover Yourself. Fuel Your Career.</p>
             </div>
           </Link>
